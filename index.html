@@ -212,6 +212,35 @@ footer {
     width: 100%;
   }
 }
+footer {
+  position: sticky;
+  bottom: 0;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#chatContainer {
+  flex: 1; /* This makes sure chatContainer takes up remaining space */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  background-color: #00696d;
+  color: #00fff7;
+  font-size: 0.7em;
+  position: relative; /* Change this from fixed */
+  bottom: 0;
+}
 
 
   </style>
@@ -335,8 +364,9 @@ footer {
       appendMessage("📢 Assalamu Alaikum! 🤲✨ I'm here to help answer your questions about Islam. May Allah (SWT) bless you with knowledge and guidance. 😊🌟", false);
     }
   </script>
+  
 <footer>
-  <p>&copy; 2025 DeenMate. All Rights Reserved.</p>
+  <p>&copy; 2025 DeenMate. All Rights Reserved. created by eisa</p>
 </footer>
 </body>
 </html>
