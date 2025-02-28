@@ -5,49 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DeenMate</title>
   <link rel="icon" type="image/png" href="./decorative-arabic-lamp-free-vector.jpg">
-  
-
-  <!-- <img src="./Frame.jpg" alt="Left Image" class="image-left">
-       <img src="./g.jpg" alt="Right Image" class="image-right"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    /* Reset and basic styling with background image */
+    /* Basic reset and background styling */
     body {
       margin: 0;
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      /* Adding background image */
-      background: url('./Desk.jpg') no-repeat center center fixed;
-      background-size: contain;
-      /* Use flex to align the chat layout to the right and center vertically */
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
+      background-color: rgb(173, 229, 230);
       height: 100vh;
-    }
-    .image-container {
       display: flex;
-      align-items: left;
+      justify-content: center;
+      align-items: center;
     }
-    /* Main chat area styling with fixed dimensions */
+    /* Container wrapping the left image and chat layout */
+    #chatContainer {
+      display: flex;
+      align-items: flex-start;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    /* Styling for the left image with custom size and left-side decoration */
+    .chat-image {
+      width: 170px;        /* Custom width */
+      height: 550px;       /* Custom height */
+      object-fit: cover;   /* Ensures the image covers the area */
+      margin-right: 20px;
+      padding: 5px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      /* Optionally add a background or shadow if desired */
+      background-color: #fff;
+    }
+    /* Main chat area styling with increased height */
     #main {
       width: 670px;
-      height: 560px;
+      height: 620px; /* Increased height */
       display: flex;
       flex-direction: column;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       background-color: #daffea;
-      position: absolute;
-      top: 35px; /* Brings the container down */
-      bottom: 100px;
-      right: 312px;
       border-radius: 19px;
-     
+      overflow: hidden;
     }
+    /* Chat header styling with custom background color */
     .chat-header {
       padding: 20px;
-      background-color: #373753;
-      border-bottom: 1px solid #e0e0e0;
-      font-size: 1.5em;
+      background-color: #00e5ff; /* Custom background color */
+      font-size: 1.7em;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
       text-align: center;
+      color: #073314;
     }
     /* Chat messages area styling */
     #chatMessages {
@@ -61,7 +70,7 @@
       border-radius: 10px;
       max-width: 70%;
       word-wrap: break-word;
-      font-size: 1em; /* Smaller font size */
+      font-size: 0.8em;
       line-height: 1.5;
     }
     .user-message {
@@ -94,7 +103,7 @@
     }
     #userInput {
       flex: 1;
-      padding: 20px 20px;
+      padding: 20px;
       font-size: 14px;
       border: 1px solid #ccc;
       border-radius: 19px;
@@ -121,13 +130,11 @@
       flex-wrap: wrap;
     }
     #preQuestions button {
-      
-      font-size: 14px;
+      font-size: 12px;
       border: 1px solid #cccccc;
       border-radius: 19px;
       outline: none;
       cursor: pointer;
-      font-size: 12px;
     }
     /* Typing indicator styling */
     .typing-indicator {
@@ -156,44 +163,62 @@
       20% { opacity: 1; }
       100% { opacity: 0.4; }
     }
+    /* CSS for Footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+    /* Customize background color */
+  text-align: center;
+  padding: 10px 0;
+  color: #005451;
+  font-size: 0.7em;
+  
+}
+
   </style>
 </head>
-<body style="background-color: rgb(173, 229, 230);">
-  <!-- Main Chat Area Only -->
-  <div id="main">
-    <div id="chatMessages"></div>
-    <!-- Pre-questions added above the text input bar -->
-    <div id="preQuestions">
-      <button onclick="selectPreQuestion('is there any exception in fasting?')">is there any exception in fasting?</button>
-      <button onclick="selectPreQuestion('ifatr ki dua (roaman english and arebic and meaning)')">ifatr ki dua</button>
-      <button onclick="selectPreQuestion('ಎಂಜಿಲು ನುಂಗುವುದರಿಂದ ನಮ್ಮ ಉಪವಾಸ ಮುರಿಯುತ್ತದೆಯೇ?')">ಎಂಜಿಲು ನುಂಗುವುದರಿಂದ ನಮ್ಮ ಉಪವಾಸ ಮುರಿಯುತ್ತದೆಯೇ?</button>
-    </div>
-    <div id="inputArea">
-      <input type="text" id="userInput" placeholder="Type your message..." />
-      <button id="sendBtn" onclick="sendMessage()">Send</button>
+<body>
+  <!-- Container for the left image and chatbot -->
+  <div id="chatContainer">
+    <!-- Left image fixed with the chatbot -->
+    <img src="./Fraccm.jpg" alt="Left Image" class="chat-image">
+    <!-- Main Chat Area -->
+    <div id="main">
+      <!-- Chat header without frame -->
+      <div class="chat-header">DeenMate</div>
+      <div id="chatMessages"></div>
+      <!-- Pre-questions above input -->
+      <div id="preQuestions">
+        <button onclick="selectPreQuestion('is there any exception in fasting?')">is there any exception in fasting?</button>
+        <button onclick="selectPreQuestion('ifatr ki dua (roaman english and arebic and meaning)')">ifatr ki dua</button>
+        <button onclick="selectPreQuestion('ಎಂಜಿಲು ನುಂಗುವುದರಿಂದ ನಮ್ಮ ಉಪವಾಸ ಮುರಿಯುತ್ತದೆಯೇ?')">ಎಂಜಿಲು ನುಂಗುವುದರಿಂದ ನಮ್ಮ ಉಪವಾಸ ಮುರಿಯುತ್ತದೆಯೇ?</button>
+      </div>
+      <div id="inputArea">
+        <input type="text" id="userInput" placeholder="Type your message..." />
+        <button id="sendBtn" onclick="sendMessage()">Send</button>
+      </div>
     </div>
   </div>
 
   <!-- Include Marked.js to convert Markdown to HTML -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
   <script>
-    const OPENROUTER_API_KEY = "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";
+    const OPENROUTER_API_KEY = "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";
     const OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions";
     
     let typingIndicatorElem = null;
 
-    // Append a new message and scroll so that the beginning of that message is visible
     function appendMessage(message, isUser) {
       const chatMessages = document.getElementById('chatMessages');
       const messageDiv = document.createElement('div');
       messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
       messageDiv.innerHTML = marked.parse(message);
       chatMessages.appendChild(messageDiv);
-      // Scroll to the top of the new message
       chatMessages.scrollTop = messageDiv.offsetTop;
     }
     
-    // Display a typing indicator for the bot's response
     function showTypingIndicator() {
       const chatMessages = document.getElementById('chatMessages');
       typingIndicatorElem = document.createElement('div');
@@ -201,7 +226,6 @@
       
       const indicator = document.createElement('div');
       indicator.className = 'typing-indicator';
-      // Create three animated dots
       for (let i = 0; i < 3; i++) {
         const dot = document.createElement('span');
         indicator.appendChild(dot);
@@ -211,7 +235,6 @@
       chatMessages.scrollTop = typingIndicatorElem.offsetTop;
     }
     
-    // Remove the typing indicator once the response is received
     function removeTypingIndicator() {
       if (typingIndicatorElem) {
         typingIndicatorElem.remove();
@@ -219,14 +242,12 @@
       }
     }
     
-    // Function to set a pre-question into the text input, hide the pre-questions, and send immediately
     function selectPreQuestion(question) {
       document.getElementById('preQuestions').style.display = 'none';
       document.getElementById('userInput').value = question;
       sendMessage();
     }
     
-    // Send message function with API call and animations
     async function sendMessage() {
       const userInput = document.getElementById('userInput');
       const message = userInput.value.trim();
@@ -234,7 +255,6 @@
       
       appendMessage(message, true);
       userInput.value = '';
-      
       showTypingIndicator();
       
       try {
@@ -249,7 +269,7 @@
           body: JSON.stringify({
             "model": "deepseek/deepseek-chat:free",
             "messages": [
-            { "role": "system", "content": "You are an Islamic rule based chatbot. Please ensure your responses adhere strictly to Islamic teachings and guidelines.you have knowledge about hadidth and quran so u can aslo provide the proof from the verses of quran" },
+              { "role": "system", "content": "You are an Islamic rule based chatbot. Please ensure your responses adhere strictly to Islamic teachings and guidelines. You have knowledge about hadith and Quran, so you can also provide the proof from the verses of Quran." },
               { "role": "user", "content": message }
             ]
           })
@@ -257,7 +277,6 @@
         
         const data = await response.json();
         const botResponse = data.choices[0].message.content;
-        // Increased delay (2000ms) to allow the typing indicator to be seen longer
         await new Promise(resolve => setTimeout(resolve, 2000));
         removeTypingIndicator();
         appendMessage(botResponse, false);
@@ -268,7 +287,6 @@
       }
     }
     
-    // Send message on Enter key press
     document.getElementById('userInput').addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
@@ -276,10 +294,12 @@
       }
     });
     
-    // On page load, show a welcome message
     window.onload = function() {
-      appendMessage("📢 Assalamu Alaikum! 🤲✨,I'm here to help answer your questions about Islam. May Allah (SWT) bless you with knowledge and guidance. 😊🌟", false);
+      appendMessage("📢 Assalamu Alaikum! 🤲✨ I'm here to help answer your questions about Islam. May Allah (SWT) bless you with knowledge and guidance. 😊🌟", false);
     }
   </script>
+<footer>
+  <p>&copy; 2025 DeenMate. All Rights Reserved. created by eisa</p>
+</footer>
 </body>
 </html>
