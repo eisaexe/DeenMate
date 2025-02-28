@@ -20,16 +20,23 @@
     /* Container wrapping the left image and chat layout */
     #chatContainer {
       display: flex;
-      align-items: flex-start;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      flex-direction: column; /* Stack elements on mobile */
+      align-items: center;
+     width: 100%;
+      height: auto;
+      position: relative;
+      top: auto;
+      left: auto;
+      transform: none;
+      padding: 10px;
     }
     /* Styling for the left image with custom size and left-side decoration */
     .chat-image {
-      width: 170px;        /* Custom width */
-      height: 550px;       /* Custom height */
+      width: 100%; /* Full width on small screens */
+  max-width: 150px; /* Limit maximum size */
+  height: auto;
+  margin-bottom: 10px;
+          /* Custom height */
       object-fit: cover;   /* Ensures the image covers the area */
       margin-right: 20px;
       padding: 5px;
@@ -40,8 +47,10 @@
     }
     /* Main chat area styling with increased height */
     #main {
-      width: 670px;
-      height: 620px; /* Increased height */
+      width: 95%; /* Reduce width for better fit */
+  max-width: 670px;
+  height: 2000px;
+       /* Increased height */
       display: flex;
       flex-direction: column;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -176,6 +185,34 @@ footer {
   font-size: 0.7em;
   
 }
+@media screen and (max-width: 768px) {
+  #chatContainer {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+  }
+  .chat-image {
+    max-width: 120px; /* Reduce image size */
+    height: auto;
+    margin-right: 0;
+  }
+  #main {
+    width: 95%;
+    height: auto;
+  }
+  #inputArea {
+    flex-direction: column; /* Stack input and button */
+    gap: 5px;
+  }
+  #userInput {
+    width: 100%;
+  }
+  #sendBtn {
+    width: 100%;
+  }
+}
+
 
   </style>
 </head>
@@ -299,7 +336,7 @@ footer {
     }
   </script>
 <footer>
-  <p>&copy; 2025 DeenMate. All Rights Reserved. created by eisa</p>
+  <p>&copy; 2025 DeenMate. All Rights Reserved.</p>
 </footer>
 </body>
 </html>
